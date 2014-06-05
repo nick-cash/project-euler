@@ -1,24 +1,14 @@
 from math import sqrt
 
 limit = 2000000
-cross_limit = sqrt(limit)
-sieve = [False for n in xrange(1, limit+1)]
+cross_limit = int(sqrt(limit) - 1) / 2
 
-# Construct our Eratosthenes sieve
-for n in xrange(4, limit, 2):
-    sieve[n] = True
+sieve_bound = (limit - 1) / 2
+sieve = [False for n in xrange(0, sieve_bound+1)]
 
-for n in xrange(3, int(cross_limit), 2):
+for n in xrange(1, cross_limit):
     if not sieve[n]:
-        for m in xrange(n*n, limit, 2*n):
-            if m > limit:
-                print m
+        for m in xrange(2*n*(n+1), sieve_bound, (2*n)+1):
             sieve[m] = True
 
-# Sum
-total = 0
-for n in xrange(2, limit):
-    if not sieve[n]:
-        total += n
-
-print total
+print 2 + sum([(2*n) + 1 for n in xrange(1, sieve_bound) if not sieve[n]])
