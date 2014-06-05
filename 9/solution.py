@@ -4,7 +4,7 @@ def is_triplet(number_list):
     return False
 
 
-for a in xrange(3, int(1000 / 3)):
+for a in xrange(3, 1000 / 3):
     for b in xrange(a+1, (1000 - a) / 2):
         c = 1000 - a - b
 
